@@ -17,7 +17,7 @@ function adjustHealthBars(maxLife) {
 function dealMonsterDamage(damage) {
   const dealtDamage = Math.random() * damage;
   monsterHealthBar.value = +monsterHealthBar.value - dealtDamage;
-  return dealtDamage;
+  return dealtDamage;//app.js برگردانده می شود .این مقدار برای انجام شرط در 
 }
 
 function dealPlayerDamage(damage) {
