@@ -31,40 +31,85 @@ function writeToLog(event, value, monsterHealth, playerHealth) {
         finalMonsterHealth: monsterHealth,
         finalPlayerHealth: playerHealth
     };
-    if (event === LOG_EVENT_PLAYER_ATTACK) {
-        logentry.target = "monster";
-    } else if (event === LOG_EVENT_PLAYER_STRONG_ATTACK) {
-        logentry = {
-            event: event,
-            value: value,
-            target: "monster",
-            finalMonsterHealth: monsterHealth,
-            finalPlayerHealth: playerHealth
-        };
-    } else if (event === LOG_EVENT_MONSTER_ATTACK) {
-        logentry = {
-            event: event,
-            value: value,
-            target: "player",
-            finalMonsterHealth: monsterHealth,
-            finalPlayerHealth: playerHealth
-        };
-    } else if (event === LOG_EVENT_PLAYER_HEAL) {
-        logentry = {
-            event: event,
-            value: value,
-            target: "player",
-            finalMonsterHealth: monsterHealth,
-            finalPlayerHealth: playerHealth
-        };
-    } else if (LOG_EVENT_GAME_OVER) {
-        logentry = {
-            event: event,
-            value: value,
-            finalMonsterHealth: monsterHealth,
-            finalPlayerHealth: playerHealth
-        };
+
+    switch (event) {
+        case LOG_EVENT_PLAYER_ATTACK:
+            logentry.target = "monster";
+            break;
+        case LOG_EVENT_PLAYER_STRONG_ATTACK:
+            logentry = {
+                event: event,
+                value: value,
+                target: "monster",
+                finalMonsterHealth: monsterHealth,
+                finalPlayerHealth: playerHealth
+            };
+            break;
+        case LOG_EVENT_MONSTER_ATTACK:
+            logentry = {
+                event: event,
+                value: value,
+                target: "player",
+                finalMonsterHealth: monsterHealth,
+                finalPlayerHealth: playerHealth
+            };
+            break;
+        case LOG_EVENT_PLAYER_HEAL:
+            logentry = {
+                event: event,
+                value: value,
+                target: "player",
+                finalMonsterHealth: monsterHealth,
+                finalPlayerHealth: playerHealth
+            };
+            break;
+        case LOG_EVENT_GAME_OVER:
+            logentry = {
+                event: event,
+                value: value,
+                finalMonsterHealth: monsterHealth,
+                finalPlayerHealth: playerHealth
+            };
+            break;
+        default:
+            logentry = { event: "bad event excute!!" };
+            break;
     }
+
+    // if (event === LOG_EVENT_PLAYER_ATTACK) {
+    //     logentry.target = "monster";
+    // } else if (event === LOG_EVENT_PLAYER_STRONG_ATTACK) {
+    //     logentry = {
+    //         event: event,
+    //         value: value,
+    //         target: "monster",
+    //         finalMonsterHealth: monsterHealth,
+    //         finalPlayerHealth: playerHealth
+    //     };
+    // } else if (event === LOG_EVENT_MONSTER_ATTACK) {
+    //     logentry = {
+    //         event: event,
+    //         value: value,
+    //         target: "player",
+    //         finalMonsterHealth: monsterHealth,
+    //         finalPlayerHealth: playerHealth
+    //     };
+    // } else if (event === LOG_EVENT_PLAYER_HEAL) {
+    //     logentry = {
+    //         event: event,
+    //         value: value,
+    //         target: "player",
+    //         finalMonsterHealth: monsterHealth,
+    //         finalPlayerHealth: playerHealth
+    //     };
+    // } else if (LOG_EVENT_GAME_OVER) {
+    //     logentry = {
+    //         event: event,
+    //         value: value,
+    //         finalMonsterHealth: monsterHealth,
+    //         finalPlayerHealth: playerHealth
+    //     };
+    // }
     battleLog.push(logentry);
 }
 
