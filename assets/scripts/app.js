@@ -11,11 +11,26 @@ const LOG_EVENT_PLAYER_HEAL = "PLAYER_HEAL";
 const LOG_EVENT_GAME_OVER = "GGAME_OVER";
 
 let battleLog = [];
-let enteredNumber = parseInt(prompt("enter player ans monster health:", "100"));
-let chosenMaxLife = enteredNumber;
+let lastLoggedEvent;
 
-if (isNaN(chosenMaxLife) || chosenMaxLife <= 0) {
+function getMaxLifeValue() {
+    const enteredNumber = parseInt(
+        prompt("enter player and monster health:", "100")
+    );
+    const parsedValue = enteredNumber;
+    if (isNaN(parsedValue) || parsedValue <= 0) {
+        throw { massage: "invalid user input, not a number " };
+    }
+    return parsedValue;
+}
+
+let chosenMaxLife;
+try {
+    chosenMaxLife = getMaxLifeValue();
+} catch (error) {
+    console.log(error);
     chosenMaxLife = 100;
+    alert("you entered a wrong value and default value 100 in enter");
 }
 
 let currentMonsterHealth = chosenMaxLife;
@@ -230,6 +245,7 @@ function prtinLogHandler() {
             // console.log(iterator[key]);
             console.log(`${key} => ${iterator[key]}`);
         }
+        lastLoggedEvent = i;
         i++;
     }
     console.log(battleLog);
