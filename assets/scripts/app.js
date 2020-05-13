@@ -30,7 +30,7 @@ try {
 } catch (error) {
     console.log(error);
     chosenMaxLife = 100;
-    alert("you entered a wrong value and default value 100 in enter");
+    alert("you entered a wrong value and default value 100 is entered");
 }
 
 let currentMonsterHealth = chosenMaxLife;
